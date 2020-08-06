@@ -180,10 +180,10 @@ public class MainActivity extends AppCompatActivity {
                         userGender = snapshot.child("sex").getValue().toString();
                         switch (userGender) {
                             case "Male":
-                                userGender = "Female";
+                                oppositeUserGender = "Male";
                                 break;
                             case "Female":
-                                userGender = "Male";
+                                oppositeUserGender = "Female";
                                 break;
                         }
                         getOppositeGenderUsers();
@@ -220,17 +220,18 @@ public class MainActivity extends AppCompatActivity {
                 usersDatabase.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                        if(snapshot.child("sex").getValue() != null){
 
-                        if (snapshot.exists() && !snapshot.child("connections").child("How_About_NO").hasChild(currentUID) && !snapshot.child("connections").child("Yes_Please").hasChild(currentUID) && !snapshot.child("sex").getValue().toString().equals(oppositeUserGender)) {
-                            String profileImageUrl = "default";
-                            if (!snapshot.child("profileImageUrl").getValue().equals("default")) {
-                                profileImageUrl = snapshot.child("profileImageUrl").getValue().toString();
+                            if (snapshot.exists() && !snapshot.child("connections").child("How_About_NO").hasChild(currentUID) && !snapshot.child("connections").child("Yes_Please").hasChild(currentUID) && !snapshot.child("sex").getValue().toString().equals(oppositeUserGender)) {
+                                String profileImageUrl = "default";
+                                if (!snapshot.child("profileImageUrl").getValue().equals("default")) {
+                                    profileImageUrl = snapshot.child("profileImageUrl").getValue().toString();
+                                }
+                                Cards Item = new Cards(snapshot.getKey(), snapshot.child("name").getValue().toString(), profileImageUrl);
+                                rowItems.add(Item);
+                                arrayAdapter.notifyDataSetChanged();
                             }
-                            Cards Item = new Cards(snapshot.getKey(), snapshot.child("name").getValue().toString(), profileImageUrl);
-                            rowItems.add(Item);
-                            arrayAdapter.notifyDataSetChanged();
                         }
-
                     }
 
                     @Override

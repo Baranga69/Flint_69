@@ -11,7 +11,8 @@
     android:paddingTop="20sp"
     android:outlineProvider="bounds"
     android:clipToPadding="false"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorDark">
 
 
     <androidx.cardview.widget.CardView
@@ -37,10 +38,13 @@
                 </ImageView>
 
                 <TextView
+                    android:textAlignment="center"
+                    android:background="@color/colorDark"
+                    android:textColorHint="@color/colorText"
                 android:id="@+id/name"
                 android:textSize="30sp"
                     android:paddingLeft="20sp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorText"
                 android:gravity="center|left"
                 tools:text="hello"
                 android:layout_width="match_parent"
