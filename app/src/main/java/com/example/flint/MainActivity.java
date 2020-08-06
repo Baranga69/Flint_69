@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Cards obj = (Cards) dataObject;
                 String userID = obj.getUserID();
-                usersDatabase.child(userID).child("Connections").child("How_About_NO").child(currentUID).setValue(true);
+                usersDatabase.child(userID).child("connections").child("How_About_NO").child(currentUID).setValue(true);
                 Toast.makeText(MainActivity.this, "Left!", Toast.LENGTH_SHORT).show();
             }
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Cards obj = (Cards) dataObject;
                 String userID = obj.getUserID();
-                usersDatabase.child(userID).child("Connections").child("Yes_Please").child(currentUID).setValue(true);
+                usersDatabase.child(userID).child("connections").child("Yes_Please").child(currentUID).setValue(true);
                 isConnectionMatch(userID);
                 Toast.makeText(MainActivity.this, "Right!", Toast.LENGTH_SHORT).show();
             }
