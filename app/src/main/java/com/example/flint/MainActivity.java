@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void isConnectionMatch(final String userID) {
 
-        DatabaseReference currentUserConnectionsDatabase = usersDatabase.child(currentUID).child("Connections").child("Yes_Please").child(userID);
+        DatabaseReference currentUserConnectionsDatabase = usersDatabase.child(currentUID).child("connections").child("Yes_Please").child(userID);
         currentUserConnectionsDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
