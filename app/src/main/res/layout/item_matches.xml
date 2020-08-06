@@ -20,23 +20,26 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         android:paddingLeft="20sp"
-        />
+        >
 
     <TextView
         android:id="@+id/MatchName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Matches Name"
         android:layout_gravity="center"
 
         />
 
     <TextView
         android:id="@+id/MatchId"
+        android:text="MatchesId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingBottom="20sp"
          />
+    </LinearLayout>
 
 </LinearLayout>
 

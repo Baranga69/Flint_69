@@ -32,7 +32,7 @@ public class Matches extends AppCompatActivity {
 
         currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        mRecyclerView=(RecyclerView) findViewById(R.id.mRecyclerView);
+        mRecyclerView=(RecyclerView) findViewById(R.id.RecyclerView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
         mMatchesLayoutManager = new LinearLayoutManager(Matches.this);
@@ -49,7 +49,7 @@ public class Matches extends AppCompatActivity {
 
     private void getUserMatchId() {
 
-        DatabaseReference matchDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUID).child("Connections").child("matches");
+        DatabaseReference matchDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUID).child("connections").child("matches");
         matchDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
