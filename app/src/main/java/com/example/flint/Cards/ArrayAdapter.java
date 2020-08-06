@@ -1,4 +1,4 @@
-package com.example.flint;
+package com.example.flint.Cards;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.example.flint.R;
 
 import java.util.List;
 
@@ -29,8 +32,15 @@ public class ArrayAdapter extends android.widget.ArrayAdapter<Cards> {
         ImageView image = (ImageView) convertView.findViewById(R.id.imageView);
 
         name.setText(cards_item.getName());
-        image.setImageResource(R.mipmap.ic_launcher);
-
+        switch(cards_item.getProfileImageUrl()) {
+            case "default":
+                Glide.with(convertView.getContext()).load(R.mipmap.ic_launcher).into(image);
+                break;
+            default:
+                Glide.clear(image);
+                Glide.with(convertView.getContext()).load(cards_item.getProfileImageUrl()).into(image);
+                break;
+        }
         return convertView;
 
     }

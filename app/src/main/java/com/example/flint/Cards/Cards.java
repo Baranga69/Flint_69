@@ -1,13 +1,15 @@
-package com.example.flint;
+package com.example.flint.Cards;
 
 public class Cards {
 
     private String userID;
     private String name;
+    private String profileImageUrl;
 
-    public Cards(String userID, String name) {
+    public Cards(String userID, String name, String profileImageUrl) {
         this.userID = userID;
         this.name = name;
+        this.profileImageUrl = profileImageUrl;
     }
 
     public String getUserID() {
@@ -24,5 +26,12 @@ public class Cards {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
     }
 }

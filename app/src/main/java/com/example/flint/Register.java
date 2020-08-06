@@ -21,6 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Register extends AppCompatActivity {
     private Button cRegister;
     private EditText cEmail, cPassword,mName;
@@ -80,8 +83,12 @@ public class Register extends AppCompatActivity {
                         }
                         else{
                             String userID = firebaseAuth.getCurrentUser().getUid();
-                            DatabaseReference currentUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(radioButton.getText().toString()).child(userID).child("name");
-                            currentUserDatabase.setValue(name);
+                            DatabaseReference currentUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+                            Map userInfo = new HashMap<>();
+                            userInfo.put("name", name);
+                            userInfo.put("sex", radioButton.getText().toString());
+                            userInfo.put("profileImageUrl", "default");
+                            currentUserDatabase.updateChildren(userInfo);
                         }
                     }
                 });
