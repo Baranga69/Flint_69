@@ -53,12 +53,19 @@ public class Matches extends AppCompatActivity {
         matchDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    for(DataSnapshot match : snapshot.getChildren()){
+                if (snapshot.exists()) {
+                    for (DataSnapshot match : snapshot.getChildren()) {
                         FetchMatchInformation(match.getKey());
                     }
                 }
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
             private void FetchMatchInformation(String key) {
                 DatabaseReference mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
@@ -77,6 +84,8 @@ public class Matches extends AppCompatActivity {
                                 profileImageUrl = snapshot.child("profileImageUrl").getValue().toString();
                             }
 
+                            MatchesObject obj = new MatchesObject(userID,name,profileImageUrl);
+                            resultsMatches.add(obj);
                             mMatchesAdapter.notifyDataSetChanged();
                         }
                     }
@@ -89,12 +98,7 @@ public class Matches extends AppCompatActivity {
 
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-    }
     private ArrayList<MatchesObject> resultsMatches = new ArrayList<MatchesObject>();
     private List<MatchesObject> getDataSetMatches() {
         return resultsMatches;
