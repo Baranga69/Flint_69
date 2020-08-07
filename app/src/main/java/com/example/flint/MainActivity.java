@@ -172,12 +172,16 @@ public class MainActivity extends AppCompatActivity {
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mUserDatabase = usersDatabase.child(user.getUid());
+
         mUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
+
                     if(snapshot.child("sex").getValue() != null) {
+
                         userGender = snapshot.child("sex").getValue().toString();
+
                         switch (userGender) {
                             case "Male":
                                 oppositeUserGender = "Male";
@@ -186,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
                                 oppositeUserGender = "Female";
                                 break;
                         }
+
                         getOppositeGenderUsers();
                     }
                 }
@@ -199,58 +204,57 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-                public void goToSettings (View view){
-                    Intent intent = new Intent(MainActivity.this, Settings.class);
-                    startActivity(intent);
-                    return;
-                }
 
-                public void goToMatches (View view){
-                    Intent intent = new Intent(MainActivity.this, Matches.class);
-                    startActivity(intent);
-                    return;
-                }
+    private void getOppositeGenderUsers()
+    {
 
+        usersDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if(snapshot.child("sex").getValue() != null){
 
-
-
-            private void getOppositeGenderUsers()
-            {
-
-                usersDatabase.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                        if(snapshot.child("sex").getValue() != null){
-
-                            if (snapshot.exists() && !snapshot.child("connections").child("How_About_NO").hasChild(currentUID) && !snapshot.child("connections").child("Yes_Please").hasChild(currentUID) && !snapshot.child("sex").getValue().toString().equals(oppositeUserGender)) {
-                                String profileImageUrl = "default";
-                                if (!snapshot.child("profileImageUrl").getValue().equals("default")) {
-                                    profileImageUrl = snapshot.child("profileImageUrl").getValue().toString();
-                                }
-                                Cards Item = new Cards(snapshot.getKey(), snapshot.child("name").getValue().toString(), profileImageUrl);
-                                rowItems.add(Item);
-                                arrayAdapter.notifyDataSetChanged();
-                            }
+                    if (snapshot.exists() && !snapshot.child("connections").child("How_About_NO").hasChild(currentUID) && !snapshot.child("connections").child("Yes_Please").hasChild(currentUID) && !snapshot.child("sex").getValue().toString().equals(oppositeUserGender)) {
+                        String profileImageUrl = "default";
+                        if (!snapshot.child("profileImageUrl").getValue().equals("default")) {
+                            profileImageUrl = snapshot.child("profileImageUrl").getValue().toString();
                         }
+                        Cards Item = new Cards(snapshot.getKey(), snapshot.child("name").getValue().toString(), profileImageUrl);
+                        rowItems.add(Item);
+                        arrayAdapter.notifyDataSetChanged();
                     }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
+                }
             }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    public void goToSettings (View view){
+        Intent intent = new Intent(MainActivity.this, Settings.class);
+        startActivity(intent);
+        return;
+    }
+
+    public void goToMatches (View view){
+        Intent intent = new Intent(MainActivity.this, Matches.class);
+        startActivity(intent);
+        return;
+    }
+
 }
 
 
