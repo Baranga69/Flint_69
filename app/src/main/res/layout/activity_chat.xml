@@ -21,14 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:background="@color/colorDark">
+        android:orientation="horizontal">
         <EditText
             android:layout_weight="0.8"
             android:layout_width="0dp"
             android:id="@+id/message"
-            android:textColor="@color/colorText"
-            android:textColorHint="@color/colorText"
             android:hint="message..."
             android:layout_height="wrap_content"/>
 
@@ -37,7 +34,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Send"
-            android:background="@drawable/login_button"
             android:id="@+id/send"/>
     </LinearLayout>
 
