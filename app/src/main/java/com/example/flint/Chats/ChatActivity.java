@@ -29,12 +29,12 @@ import java.util.List;
 import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
-
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mChatAdapter;
     private RecyclerView.LayoutManager mChatLayoutManager;
 
     private String currentUID, matchId, chatId;
+
     private EditText mSendEditText;
     private Button mSendButton;
     DatabaseReference mDatabaseUser, mDatabaseChat;
@@ -48,7 +48,7 @@ public class ChatActivity extends AppCompatActivity {
 
         currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat");
-        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUID).child("connections").child("matches").child(matchId).child("chatId");
+        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUID).child("connections").child("matches").child(matchId).child("ChatId");
 
         getChatId();
 

@@ -184,10 +184,10 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (userGender) {
                             case "Male":
-                                oppositeUserGender = "Male";
+                                oppositeUserGender = "Female";
                                 break;
                             case "Female":
-                                oppositeUserGender = "Female";
+                                oppositeUserGender = "Male";
                                 break;
                         }
 
@@ -213,11 +213,15 @@ public class MainActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 if(snapshot.child("sex").getValue() != null){
 
-                    if (snapshot.exists() && !snapshot.child("connections").child("How_About_NO").hasChild(currentUID) && !snapshot.child("connections").child("Yes_Please").hasChild(currentUID) && !snapshot.child("sex").getValue().toString().equals(oppositeUserGender)) {
+                    if (snapshot.exists() && !snapshot.child("connections").child("How_About_NO").hasChild(currentUID) && !snapshot.child("connections").child("Yes_Please").hasChild(currentUID)
+                            && !snapshot.child("sex").getValue().toString().equals(userGender)) {
+
                         String profileImageUrl = "default";
+
                         if (!snapshot.child("profileImageUrl").getValue().equals("default")) {
                             profileImageUrl = snapshot.child("profileImageUrl").getValue().toString();
                         }
+
                         Cards Item = new Cards(snapshot.getKey(), snapshot.child("name").getValue().toString(), profileImageUrl);
                         rowItems.add(Item);
                         arrayAdapter.notifyDataSetChanged();
