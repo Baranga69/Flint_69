@@ -47,8 +47,9 @@ public class ChatActivity extends AppCompatActivity {
         matchId = getIntent().getExtras().getString("matchId");
 
         currentUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUID).child("connections").child("matches").child(matchId).child("ChatId");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat");
-        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUID).child("connections").child("matches").child(matchId).child("chatId");
+
 
         getChatId();
 
