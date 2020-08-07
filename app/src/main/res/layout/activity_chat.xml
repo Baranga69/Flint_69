@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.flint.Chats.ChatActivity">
+    tools:context="com.example.flint.Chats.ChatActivity"
+    android:background= "@color/colorDark">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +30,7 @@
             android:id="@+id/message"
             android:textColor="@color/colorText"
             android:textColorHint="@color/colorText"
-            android:hint="message..."
+            android:hint="Type a message..."
             android:layout_height="wrap_content"/>
 
         <Button
