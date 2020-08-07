@@ -38,13 +38,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="125dp"
         android:layout_marginLeft="125dp"
         android:layout_marginTop="118dp"
         android:layout_marginEnd="128dp"
         android:layout_marginRight="128dp"
-        android:layout_marginBottom="565dp"
         android:background="@drawable/matches_button"
         android:onClick="goToMatches"
         android:text="Matches" />
@@ -54,18 +52,12 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="320dp"
-        android:layout_marginLeft="320dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
-        android:layout_marginBottom="683dp"
         android:onClick="goToSettings"
         android:text="Settings" />
 

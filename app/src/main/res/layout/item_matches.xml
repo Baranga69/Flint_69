@@ -15,6 +15,7 @@
 
 
     <LinearLayout
+        android:background="@color/colorDark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -24,6 +25,8 @@
 
     <TextView
         android:id="@+id/MatchName"
+        android:textColorHint="@color/colorText"
+        android:textColor="@color/colorText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Matches Name"
@@ -33,6 +36,8 @@
 
     <TextView
         android:id="@+id/MatchId"
+        android:textColor="@color/colorText"
+        android:textColorHint="@color/colorText"
         android:text="MatchesId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

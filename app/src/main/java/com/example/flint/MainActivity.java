@@ -133,10 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
 
-                    usersDatabase.child(snapshot.getKey()).child("connections").child("matches").child(currentUID).setValue(true);
                     usersDatabase.child(snapshot.getKey()).child("connections").child("matches").child(currentUID).child("ChatId").setValue(key);
-
-                    usersDatabase.child(currentUID).child("connections").child("matches").child(snapshot.getKey()).setValue(true);
                     usersDatabase.child(currentUID).child("connections").child("matches").child(snapshot.getKey()).child("ChatId").setValue(key);
 
 
@@ -181,16 +178,13 @@ public class MainActivity extends AppCompatActivity {
                     if(snapshot.child("sex").getValue() != null) {
 
                         userGender = snapshot.child("sex").getValue().toString();
+                        if (userGender == "Male"){
+                            oppositeUserGender = "Female";
 
-                        switch (userGender) {
-                            case "Male":
-                                oppositeUserGender = "Male";
-                                break;
-                            case "Female":
-                                oppositeUserGender = "Female";
-                                break;
                         }
-
+                        if (userGender=="Female"){
+                            oppositeUserGender = "Male";
+                        }
                         getOppositeGenderUsers();
                     }
                 }
@@ -212,8 +206,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 if(snapshot.child("sex").getValue() != null){
-
-                    if (snapshot.exists() && !snapshot.child("connections").child("How_About_NO").hasChild(currentUID) && !snapshot.child("connections").child("Yes_Please").hasChild(currentUID) && !snapshot.child("sex").getValue().toString().equals(oppositeUserGender)) {
+                    if (snapshot.exists() && !snapshot.child("connections").child("How_About_NO").hasChild(currentUID) && !snapshot.child("connections").child("Yes_Please").hasChild(currentUID) && !snapshot.child("sex").getValue().toString().equals(userGender)) {
                         String profileImageUrl = "default";
                         if (!snapshot.child("profileImageUrl").getValue().equals("default")) {
                             profileImageUrl = snapshot.child("profileImageUrl").getValue().toString();
